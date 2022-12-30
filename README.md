@@ -11,6 +11,13 @@ We investigate the use of deep neural networks for the prediction of microstruct
 
 The project is conducted in collaboration with the Materials and Processes Section TEC-MSP at the ESA's Mechanical Engineering Department at ESTEC, Noordwijk, The Netherlands, within the research group of Integrated Computational Materials Engineering for space relevant Additive Manufacturing processes.
 
+## Requirements
+- Python > 3.0
+- Pytorch 1.0
+
+## Install 
+pip3 install -r requirements.txt
+
 ## Dataset 
 Our dataset consists of 2D time series datasets (image time series). Labels are automatically generated according to statistical sampling (Dakota). Data quality defined by resolution of numerical datasets (correlated to computation time). The time series images are organized in folders, based on different simulation settings and every folder is listed in a `.txt` config file. 
 The data are produced and owned by ESA TEC-MSP.
@@ -22,6 +29,20 @@ A complete tutorial on how to create a video dataloader with pytorch can be foun
 
 ## Model 
 The model is a conv-lstm network, which is implemented in PyTorch by NVidia Labs, based on the paper, '***Convolutional Tensor-Train LSTM for Spatio-Temporal Learning***', NeurIPS 2020. [[project page](https://sites.google.com/nvidia.com/conv-tt-lstm)] [[original repo](https://github.com/NVlabs/conv-tt-lstm)]
+
+## Loading the dataset and training the model
+1) create a custom config file for training and testing with ``config_videocreator.py``
+2) Load the videos with ``ms_dataloader.py``
+3) Train the model with ``ms_model_train.py``
+
+## Training the model with HPC cluster
+In order to submit an already created job script, the command ``sbatch`` has to be used.
+```
+sbatch train_ms.sh
+```
+
+## Testing the model
+* In order to run the test code, you must have trained the model and saved at least one checkpoint as a '.pt'  file
 
 
 #### License 
