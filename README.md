@@ -1,46 +1,34 @@
-# Video Forecasting model (Conv-TT-LSTM) applied to Microstructure Evolution
+# Video Forecasting model (Conv-LSTM) to accelerate the prediction of material microstructure Evolution
 
-## Requirements
-- Python > 3.0
-- Pytorch 1.0
+<p float="left" align="center"> 
+<img src="ms_evolution_example.png" width="90%" />
+</p>
 
-## Install 
-pip3 install -r requirements.txt
+## Intro
+The focus of this project is the development of cost-effective and adaptable software strategies to promote Virtual Testing for the Process-Structure-Property (PSP) modeling. 
 
-## Dataset
-Our dataset consists of 2D time series datasets (image time series). Dataset provided and owned by ESA TEC-MSP. In order to feed the training/testing samples to the model, a video samples has to be created.
+We investigate the use of deep neural networks for the prediction of microstructure evolution in engineering materials. This investigation enables incremental materials technology improvements, by accelerating the traditional CFD workloads and establishing process-structure linkage.
 
-## Model
-PyTorch implementations of the paper, '***Convolutional Tensor-Train LSTM for Spatio-Temporal Learning***', NeurIPS 2020. [[project page](https://sites.google.com/nvidia.com/conv-tt-lstm)]
+The project is conducted in collaboration with the Materials and Processes Section TEC-MSP at the ESA's Mechanical Engineering Department at ESTEC, Noordwijk, The Netherlands, within the research group of Integrated Computational Materials Engineering for space relevant Additive Manufacturing processes.
 
-* Original implementation to reproduce the numbers in the paper.
-* We also provide a highly optimized implementation for NVIDIA GPU under the folder ../code_opt/, check it out! 
+## Dataset 
+Our dataset consists of 2D time series datasets (image time series). Labels are automatically generated according to statistical sampling (Dakota). Data quality defined by resolution of numerical datasets (correlated to computation time). The time series images are organized in folders, based on different simulation settings and every folder is listed in a `.txt` config file. 
+The data are produced and owned by ESA TEC-MSP.
 
-Original implementation tested on:
-- MNIST
-- KTH
-datasets.
+### Dataloader
+A data sample (a video) is created based on the temporal sequence of images by a custom dataloader. To enumerate all video samples in the dataset, a new `.txt` config file is manually created that contains a row for each video clip sample in the dataset. Note that the training, validation, and testing datasets have separate config files. Each row is in the format `VIDEO_PATH START_FRAME END_FRAME`. 
+
+A complete tutorial on how to create a video dataloader with pytorch can be found here: [[video dataset loading]](https://github.com/RaivoKoot/Video-Dataset-Loading-Pytorch)
+
+## Model 
+The model is a conv-lstm network, which is implemented in PyTorch by NVidia Labs, based on the paper, '***Convolutional Tensor-Train LSTM for Spatio-Temporal Learning***', NeurIPS 2020. [[project page](https://sites.google.com/nvidia.com/conv-tt-lstm)] [[original repo](https://github.com/NVlabs/conv-tt-lstm)]
+
 
 #### License 
 Copyright (c) 2020 NVIDIA Corporation. All rights reserved. This work is licensed under a NVIDIA Open Source Non-commercial license.
 
-
-## Loading the dataset and training the model
-1) create a custom config file for training and testing with ``config_videocreator.py``
-2) Load the videos with ``ms_dataloader.py``
-3) Train the model with ``ms_model_train.py``
-
-## Training the model with HPC cluster
-In order to submit an already created job script, the command ``sbatch`` has to be used.
-```
-sbatch train_ms.sh
-```
-
-## Testing the model
-* In order to run the test code, you must have trained the model and saved at least one checkpoint as a '.pt'  file
+The code for the conv-tt-lstm model is written by [Wonmin Byeon](https://github.com/wonmin-byeon) \(wbyeon@nvidia.com\) and [Jiahao Su](https://github.com/jiahaosu) \(jiahaosu@terpmail.umd.edu\).
 
 
 ## Contacts
-The microstructure project is written by [Monica Rotulo](https://github.com/mooon) \(monica.rotulo@gmail.com\).
-
-The conv-lstm/conv-tt-lstm code was written by [Wonmin Byeon](https://github.com/wonmin-byeon) \(wbyeon@nvidia.com\) and [Jiahao Su](https://github.com/jiahaosu) \(jiahaosu@terpmail.umd.edu\).
+The project for the microstructure prediction is written by [Monica Rotulo](https://github.com/Mooon) \(monica.rotulo@surf.nl\)
