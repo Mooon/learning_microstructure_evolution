@@ -25,9 +25,7 @@ The model is a conv-lstm network, which is implemented in PyTorch by NVidia Labs
 
 
 #### License 
-Copyright (c) 2020 NVIDIA Corporation. All rights reserved. This work is licensed under a NVIDIA Open Source Non-commercial license.
-
-The code for the conv-tt-lstm model is written by [Wonmin Byeon](https://github.com/wonmin-byeon) \(wbyeon@nvidia.com\) and [Jiahao Su](https://github.com/jiahaosu) \(jiahaosu@terpmail.umd.edu\).
+The conv-tt-lstm model is under Copyright (c) 2020 NVIDIA Corporation. All rights reserved. This work is licensed under a NVIDIA Open Source Non-commercial license.
 
 
 ## Contacts
